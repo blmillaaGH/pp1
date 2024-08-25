@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de cuenta</title>
+    <script src="registro.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="head-sup" class="head-sup">
+        <h1>Sistema de Gestión de Pedidos</h1>
+        <nav class="nav-sup">
+            
+        </nav>
+    </header>
+
+    <div class="inicioSesion-container">
+        <h2>Registro de cuenta</h2>
+        <form id="registerForm">
+            <div class="input-sesion">
+                <label for="email">Correo electrico</label>
+                <input type="email" id="correoElectronico" placeholder="Correo electronico" required>
+            </div>
+            <div class="input-sesion">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+            </div>
+            <div class="input-sesion">
+                <label for="passwordConfirm">Repetir contraseña</label>
+                <input type="password" id="passwordConfirm" placeholder="Contraseña" required>
+            </div>
+            <div class="input-sesion">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Ingresa tu nombre">
+            </div>
+            <div class="input-sesion">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" placeholder="Ingresa tu apellido" required>
+            </div>
+            <div class="input-sesion">
+                <label for="tipoDocumento">Tipo de Documento:</label>
+                <select id="tipoDocumento" class="tipoDocumento" name="tipoDocumento" required>
+                    <option value="dni">DNI</option>
+                    <option value="pasaporte">Pasaporte</option>
+                    <option value="cedula">Cédula</option>
+                    <option value="licencia">Licencia de Conducir</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+            <div class="input-sesion">
+                <label for="documento">Documento</label>
+                <input type="number" id="documento" placeholder="Ingresa tu documento" required>
+            </div>
+            <div class="input-sesion">
+                <label for="localidad">Localidad</label>
+                <input type="text" id="localidad" placeholder="Ingresa tu localidad" required>
+            </div>
+            <div class="input-sesion">
+                <label for="provincia">Provincia</label>
+                <input type="text" id="provincia" placeholder="Ingresa tu provincia" required>
+            </div>
+            <div class="input-sesion">
+                <label for="pais">Pais</label>
+                <input type="text" id="pais" placeholder="Ingresa tu pais" required>
+            </div>
+            <div class="input-sesion terminosCondiciones">
+                <label for="Terminos" class="terminosCondiciones2">
+                    <input type="checkbox" id="Terminos" name="opciones" value="1">
+                    Terminos y condiciones
+                </label>
+            </div>
+            <button type="submit">Crear cuenta</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+    </div>
+
+    
+    <footer>
+        <p>© 2do DSW P-P-1 G-7 2024</p>
+    </footer>
+</body>
+</html>

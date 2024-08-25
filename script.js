@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+//Inicio de sesion
 document.getElementById("loginForm").addEventListener("submit", function(event) {
   event.preventDefault();
   
