@@ -1,0 +1,64 @@
+.miModalHistorial {
+    display: none; 
+    position: fixed;
+    left: 0;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContenidoHistorial {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;  
+    max-width: 800px;  
+    height: 70%;  
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;  /* Organiza el contenido en una columna */
+    justify-content: space-between;  /* Espacio justo entre los elementos */
+}
+
+/* Estilos para el botón de cierre */
+.cerrarModalHistorial {
+    color: #fff;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;  /* Aumenta el tamaño del botón de cierre */
+    font-weight: bold;
+    background-color: #dc3545;
+    border-radius: 50%;
+    padding: 12px;  /* Incrementa el padding para que el botón sea más grande */
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.cerrarModalHistorial:hover,
+.cerrarModalHistorial:focus {
+    background-color: #c82333;
+}
+
+.tablaPedidos {
+    flex-grow: 1;  /* La tabla ocupará todo el espacio disponible */
+}
+/* Reducir el tamaño de las celdas de la tabla */
+.tablaPedidos td {
+    font-size: 14px;  /* Disminuye el tamaño de la fuente */
+    padding: 8px 12px;  /* Ajusta el padding */
+}
+
+/* Centrar el texto en las celdas */
+.tablaPedidos th,
+.tablaPedidos td {
+    text-align: center;  /* Centra el texto */
+}
+.modalContenidoHistorial > div:last-child {
+    margin-top: 10px;  /* Ajusta el margen superior */
+    text-align: right;  
+}
