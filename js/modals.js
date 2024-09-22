@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const botonesIrMenu = document.querySelectorAll('.btn-ir-menu');
     const modales = document.querySelectorAll('.miModal');
     const botones = document.querySelectorAll('.abrirModal');
     const botonesModificar = document.querySelectorAll('.modificar');
@@ -23,6 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
     botonesModificar.forEach((boton, index) => {
         boton.addEventListener('click', () => {
             mostrarModal(index, true);
+        });
+    });
+
+   
+    botonesIrMenu.forEach((boton) => {
+        boton.addEventListener('click', function() {
+            window.location.href = 'menus.html';
         });
     });
 
