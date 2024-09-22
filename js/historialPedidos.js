@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="confirmarPedido">Agregar pedido a la semana actual</button>
 
                 <div id="mensajeConfirmacion2" class="mensaje-confirmacion" style="display:none;">
-                    <p>¡Su pedido ha sido confirmado!</p>
+                    <p>¡Su pedido ha sido agregado a la semana actual!</p>
                 </div>
             </div>
         `;
