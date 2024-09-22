@@ -394,4 +394,22 @@ button.agregar:hover, button.eliminar:hover {
     background-color: #c82333;
 }
 
+.mensaje-confirmacion {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    text-align: center;
+    z-index: 1000;
+    transition: opacity 0.5s;
+    visibility: hidden;
+}
+
+
 
