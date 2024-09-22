@@ -129,6 +129,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mostrar mensaje de confirmación al presionar el botón "CONFIRMAR PEDIDO" en la pantalla principal
     confirmarPedidoBtn.addEventListener('click', function () {
         mostrarMensajeConfirmacion();
+        const botonesAgregar = document.querySelectorAll('.estado');
+        botonesAgregar.forEach((btn) => {
+            btn.style.color = '';
+            btn.style.backgroundColor = '';
+            btn.disabled = true;
+            btn.textContent = 'AGREGADO';
+        })   
     });
 
     function mostrarMensajeConfirmacion() {

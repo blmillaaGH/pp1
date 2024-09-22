@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mostrarContenido(modales[index]);
 
                 // Seleccionar el botón de cierre después de cargar el contenido
-                const cerrarBtn = modales[index].querySelector('.cerrarModalHistorial');
+                const cerrarBtn = modales[index].querySelector('.cerrarModal'); // Cambié a '.cerrarModal'
                 cerrarBtn.addEventListener('click', () => {
                     modales[index].style.display = 'none';
                 });
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function mostrarContenido(modal) {
         const contenidoModal = modal.querySelector('.modalContenidoHistorial');
         contenidoModal.innerHTML = `
-            <span class="cerrarModal">&times;</span>
+            <span class="cerrarModal">&times;</span> <!-- Cambié a .cerrarModal -->
             <table class="tablaPedidos">
                 <thead>
                     <tr>
@@ -43,8 +43,43 @@ document.addEventListener('DOMContentLoaded', function() {
             </table>
             <div style="margin-top: 20px; text-align: right;">
                 <button class="confirmarPedido">Agregar pedido a la semana actual</button>
+
+                <div id="mensajeConfirmacion2" class="mensaje-confirmacion" style="display:none;">
+                    <p>¡Su pedido ha sido confirmado!</p>
+                </div>
             </div>
         `;
+
+        // Asignar evento al botón confirmarPedido después de que se genere el contenido
+        const confirmarPedido = modal.querySelector('.confirmarPedido');
+        const mensajeConfirmacion2 = modal.querySelector('#mensajeConfirmacion2');
+
+        confirmarPedido.addEventListener('click', () => {
+            mostrarMensajeConfirmacion(mensajeConfirmacion2);
+            setTimeout(() => {
+                modal.style.display = 'none';
+             }, 3000);
+        });
+
+        // Asignar el evento de cierre al botón generado dinámicamente
+        const cerrarBtn = modal.querySelector('.cerrarModal'); // Asegurarse de que el botón está seleccionado tras crear el contenido
+        cerrarBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    function mostrarMensajeConfirmacion(mensajeConfirmacion2){
+         // Mostrar el mensaje de confirmación
+         mensajeConfirmacion2.style.opacity = 1;
+         mensajeConfirmacion2.style.visibility = 'visible';
+         mensajeConfirmacion2.style.display = 'block';
+
+         // Ocultar el mensaje después de 3 segundos
+         setTimeout(() => {
+            mensajeConfirmacion2.style.opacity = 0;
+            mensajeConfirmacion2.style.visibility = 'none';
+            mensajeConfirmacion2.style.display = 'none';
+         }, 3000);
     }
 
     // Función para generar filas del menú
@@ -57,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <tr>
                     <td>${dias}</td>
                     <td>Menu del dia</td>
-                   
                 </tr>
             `;
         }
