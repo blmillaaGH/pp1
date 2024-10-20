@@ -155,13 +155,18 @@ document.addEventListener('DOMContentLoaded', function () {
     function generarFilasMenu(cantidad, diaIndex, esModificacion) {
         let filas = '';
         fetch(`http://localhost:8080/api/menus/dia/${diaIndex}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Error en la solicitud: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(menus => {
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+        return response.text(); // Cambiamos a text() para inspeccionar el contenido
+    })
+    .then(data => {
+        console.log("Respuesta del servidor:", data); // Mostrar la respuesta cruda
+        if (data) {
+            try {
+                let menus = JSON.parse(data);
+                // Procesar los menús si el JSON es válido
                 if (menus.length === 0) {
                     filas = '<tr><td colspan="2">No hay menús disponibles para este día.</td></tr>';
                 } else {
@@ -178,11 +183,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 }
                 document.querySelector('.tablaPedidos tbody').innerHTML = filas;
-            })
-            .catch(error => {
-                console.error('Error al obtener los menús:', error);
-                filas = '<tr><td colspan="2">Error al cargar los menús.</td></tr>';
-                document.querySelector('.tablaPedidos tbody').innerHTML = filas;
-            });
+            } catch (error) {
+                console.error('Error al analizar el JSON:', error);
+            }
+        } else {
+            console.error('Respuesta vacía');
+        }
+    })
+    .catch(error => {
+        console.error('Error al obtener los menús:', error);
+        filas = '<tr><td colspan="2">Error al cargar los menús.</td></tr>';
+        document.querySelector('.tablaPedidos tbody').innerHTML = filas;
+    });
+
     }
 });

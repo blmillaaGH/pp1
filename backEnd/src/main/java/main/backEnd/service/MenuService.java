@@ -1,11 +1,12 @@
 package main.backEnd.service;
 
-import main.backEnd.entities.Menu;
-import main.backEnd.repository.MenuRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import main.backEnd.entities.Menu;
+import main.backEnd.repository.MenuRepository;
 
 @Service
 public class MenuService {
@@ -14,6 +15,6 @@ public class MenuService {
     MenuRepository repository;
 
     public List<Menu> obtenerMenusPorDia(int dia) {
-        return repository.findByDia(dia); // devolvemos la lista de menus disponibles
+        return repository.findByDia(dia+1); // devolvemos la lista de menus disponibles
     }
 }
