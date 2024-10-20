@@ -154,17 +154,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function generarFilasMenu(cantidad, diaIndex, esModificacion) {
         let filas = '';
-        for (let i = 0; i < cantidad; i++) {
-            filas += `
-                <tr>
-                    <td>(menú ejemplo del día disponible)</td>
-                    <td>
-                        <button class="agregar">AGREGAR</button>
-                        <button class="eliminar">ELIMINAR</button>
-                    </td>
-                </tr>
-            `;
-        }
-        return filas;
+        fetch(`http://localhost:8080/api/menus/dia/${diaIndex}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(menus => {
+                if (menus.length === 0) {
+                    filas = '<tr><td colspan="2">No hay menús disponibles para este día.</td></tr>';
+                } else {
+                    menus.forEach(menu => {
+                        filas += `
+                            <tr>
+                                <td>${menu.nombre}</td>
+                                <td>
+                                    <button class="agregar">AGREGAR</button>
+                                    <button class="eliminar">ELIMINAR</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+                document.querySelector('.tablaPedidos tbody').innerHTML = filas;
+            })
+            .catch(error => {
+                console.error('Error al obtener los menús:', error);
+                filas = '<tr><td colspan="2">Error al cargar los menús.</td></tr>';
+                document.querySelector('.tablaPedidos tbody').innerHTML = filas;
+            });
     }
 });
