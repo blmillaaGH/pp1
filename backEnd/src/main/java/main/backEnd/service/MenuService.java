@@ -15,6 +15,6 @@ public class MenuService {
     MenuRepository repository;
 
     public List<Menu> obtenerMenusPorDia(int dia) {
-        return repository.findByDia(dia+1); // devolvemos la lista de menus disponibles
+        return repository.findByDia(dia); // devolvemos la lista de menus disponibles
     }
 }

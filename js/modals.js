@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const confirmarPedidoBtn = document.querySelector('.confirmar-pedido');
     const mensajeConfirmacion = document.getElementById('mensajeConfirmacion');
 
-    let pedidos = Array.from({ length: 5 }, () => ({
+    // Cargar pedidos del localStorage al inicio
+    let pedidos = JSON.parse(localStorage.getItem('pedidos')) || Array.from({ length: 5 }, () => ({
         menus: [],
         confirmado: false
     }));
@@ -75,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 estadosPedidos[index].style.backgroundColor = 'green';
                 estadosPedidos[index].style.color = 'white';
                 pedidos[index].confirmado = true;
+
+                // Almacenar en localStorage
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
             }
             modal.style.display = 'none';
         });
@@ -82,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para generar las filas del menú dinámicamente
     function generarFilasMenu(diaIndex, esModificacion, tbody) {
-        fetch(`http://localhost:8080/api/menus/dia/${diaIndex + 1}`)  // Corrección: Index + 1 para que coincida con el día
+        fetch(`http://localhost:8080/api/menus/dia/${diaIndex + 1}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Error en la solicitud: ${response.statusText}`);
@@ -95,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
     
                 try {
-                    let menus = JSON.parse(data); // Intentar parsear el JSON
+                    let menus = JSON.parse(data);
                     let filas = '';
     
                     if (menus.length === 0) {
@@ -133,6 +137,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             btn.textContent = 'AGREGADO';
                             btn.disabled = true;
                             pedidos[diaIndex].menus.push(btnIndex);
+
+                            // Almacenar en localStorage
+                            localStorage.setItem('pedidos', JSON.stringify(pedidos));
                         });
                     });
     
@@ -141,8 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             const menuIndex = pedidos[diaIndex].menus.indexOf(btnIndex);
                             if (menuIndex > -1) {
                                 pedidos[diaIndex].menus.splice(menuIndex, 1);
+
+                                // Almacenar en localStorage
+                                localStorage.setItem('pedidos', JSON.stringify(pedidos));
                             }
-    
+
                             const agregarBtn = botonesAgregar[btnIndex];
                             agregarBtn.style.backgroundColor = '#28a745';
                             agregarBtn.style.color = 'white';
@@ -161,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
     
-
     // Función para eliminar pedido desde la pantalla principal
     botonesEliminar.forEach((btn, index) => {
         btn.addEventListener('click', () => {
@@ -170,6 +179,9 @@ document.addEventListener('DOMContentLoaded', function () {
             estadosPedidos[index].textContent = 'AGREGADO';
             estadosPedidos[index].style.backgroundColor = '';
             estadosPedidos[index].style.color = '';
+
+            // Almacenar en localStorage
+            localStorage.setItem('pedidos', JSON.stringify(pedidos));
         });
     });
 
