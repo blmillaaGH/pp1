@@ -5,9 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MenuRepository extends JpaRepository<Menu,Long> {
-    // find by dia extends jpa
+
+    // hay que buscar los menus por dia, para mostrarlos en el menu principal y devolver la lista de menus (por index)
     List<Menu> findByDia(int dia);
+
+    Optional<Menu> findByDiaAndComidaId(int dia, Long comidaId);
 }

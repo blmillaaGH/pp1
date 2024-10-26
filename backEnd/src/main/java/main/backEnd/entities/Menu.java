@@ -1,15 +1,14 @@
 package main.backEnd.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Menu {
+    // el menu, almacena el dia (por el selector) y almacena la relacion con la comida y con el pedido.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -19,12 +18,12 @@ public class Menu {
     private int dia;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
-
-    @ManyToOne
     @JoinColumn(name = "comida_id")
     private Comida comida;
+
+    @ManyToMany(mappedBy = "menusPedido")
+    @JsonIgnoreProperties("menusPedido")
+    private List<Pedido> pedidos;
 
     public String getNombre() {
         return nombre;
@@ -38,11 +37,11 @@ public class Menu {
     public void setId(Long id) {
         this.id = id;
     }
-    public Pedido getPedido() {
-        return pedido;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
     public int getDia() {
         return dia;
@@ -55,5 +54,8 @@ public class Menu {
     }
     public void setComida(Comida comida) {
         this.comida = comida;
+    }
+
+    public void setPedido(Pedido nuevoPedido) {
     }
 }
