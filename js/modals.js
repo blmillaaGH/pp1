@@ -195,10 +195,9 @@ confirmarPedidoBtn.addEventListener('click', function () {
     const pedidosConfirmados = crearPedidosConfirmados();
     console.log('Pedidos confirmados a enviar:', JSON.stringify(pedidosConfirmados));
 
-    // Flatten the menus array and create the correct JSON format
     const menus = pedidosConfirmados.flatMap(pedido => pedido.menus.map(menu => ({
         dia: pedido.dia,
-        comidaId: parseInt(menu.comidaId, 10) || null
+        comidaId: parseInt(menu.comidaId, 10)
     })));
 
     const pedido = {
@@ -275,5 +274,6 @@ function mostrarMensajeError(mensaje) {
         errorDiv.style.display = 'block';
     }
 }
+
 
 });

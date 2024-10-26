@@ -14,14 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-
-@CrossOrigin
 @RestController
 @RequestMapping("/api/pedidos")
+@CrossOrigin(origins = "*")
 public class PedidoController {
-
-    // traer los menus persistidos y asociados a cada pedido.
-
     @Autowired
     private PedidoService pedidoService;
     @Autowired
@@ -50,7 +46,6 @@ public class PedidoController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
     @GetMapping
     public ResponseEntity<List<Pedido>> getAllPedidos() {
