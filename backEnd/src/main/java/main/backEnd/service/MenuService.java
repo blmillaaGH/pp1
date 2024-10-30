@@ -15,8 +15,8 @@ public class MenuService {
     @Autowired
     MenuRepository menuRepository;
 
-    public List<Menu> obtenerMenusPorDia(int dia) {
-        return menuRepository.findByDia(dia); // devolvemos la lista de menus disponibles para X dia
+    public List<Menu> getMenusBySemanaAndDia(int semana, int dia) {
+        return menuRepository.findBySemanaAndDia(semana,dia); // devolvemos la lista de menus disponibles para X dia y semana
     }
 
     // busca el menu que se le paso por PedidoController en base al día y el comida ID para agregarlo al pedido

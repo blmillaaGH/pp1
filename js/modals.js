@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const botonesEliminar = document.querySelectorAll('.eliminar');
     const confirmarPedidoBtn = document.querySelector('.confirmar-pedido');
     const mensajeConfirmacion = document.getElementById('mensajeConfirmacion');
+   
 
     // Cargar pedidos del localStorage al inicio
     let pedidos = JSON.parse(localStorage.getItem('pedidos')) || Array.from({ length: 5 }, () => ({
@@ -86,11 +87,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para generar las filas del menú dinámicamente
     function generarFilasMenu(diaIndex, esModificacion, tbody) {
-        fetch(`http://localhost:8080/api/menus/dia/${diaIndex + 1}`)
+
+        const semanaSelector = document.getElementById('semanaSelector');
+        const semanaElegida = semanaSelector.value;
+
+        fetch(`http://localhost:8080/api/menus/semana/${semanaElegida}/dia/${diaIndex + 1}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Error en la solicitud: ${response.statusText}`);
                 }
+                console.log(`Semana seleccionada: ${semanaElegida}, Día: ${diaIndex + 1}`); 
                 return response.text(); // Parsear como texto primero para verificar si está vacío
             })
             .then(data => {

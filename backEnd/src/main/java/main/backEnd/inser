@@ -1,15 +1,26 @@
-INSERT INTO Comida (id, nombre, desc) VALUES (1, 'Pizza Margherita', 'Classic pizza with tomato sauce, mozzarella cheese, and fresh basil');
-INSERT INTO Comida (id, nombre, desc) VALUES (2, 'Caesar Salad', 'Crispy romaine lettuce with Caesar dressing, croutons, and grated Parmesan cheese');
-INSERT INTO Comida (id, nombre, desc) VALUES (3, 'Spaghetti Carbonara', 'Pasta with creamy sauce made with eggs, cheese, pancetta, and pepper');
-INSERT INTO Comida (id, nombre, desc) VALUES (4, 'Chicken Tacos', 'Soft tortillas filled with grilled chicken, lettuce, cheese, and salsa');
-INSERT INTO Comida (id, nombre, desc) VALUES (5, 'Chocolate Brownie', 'Rich and fudgy brownie with a soft, gooey center');
-INSERT INTO Comida (id, nombre, desc) VALUES (6, 'Sushi Platter', 'Assorted sushi served with soy sauce, wasabi, and pickled ginger');
-INSERT INTO Comida (id, nombre, desc) VALUES (7, 'Beef Steak', 'Juicy beef steak grilled to perfection');
-INSERT INTO Comida (id, nombre, desc) VALUES (8, 'Veggie Burger', 'A delicious veggie patty served with lettuce, tomato, and cheese');
-INSERT INTO Comida (id, nombre, desc) VALUES (9, 'Fish and Chips', 'Crispy fried fish served with French fries and tartar sauce');
-INSERT INTO Comida (id, nombre, desc) VALUES (10, 'Pasta Alfredo', 'Creamy Alfredo pasta topped with Parmesan cheese');
-INSERT INTO Menu (id, dia, nombre, comida_id) VALUES (1, 1, 'Menu Lunes 1', 1);  -- Lunes
-INSERT INTO Menu (id, dia, nombre, comida_id) VALUES (2, 1, 'Menu Lunes 2', 2);  -- Lunes
+INSERT INTO Comida (id, nombre) VALUES (1, 'Milanesa de pollo o carne sola o a la pizza');
+INSERT INTO Comida (id, nombre) VALUES (2, 'Pastel de carne y papas');
+-- INSERT INTO Comida (id, nombre, semana) VALUES (3, 'Carne al horno',4);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (4, 'Pata muslo/Carne/Cerdo (puede venir cualquier variedad)',1);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (5, 'Pollo relleno + papa',2);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (6, 'Sandwich pollo o milanesa / lechuga-tomate',3);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (7, 'Medallones de pollo',1);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (8, 'Arroz con pollo',4);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (9, 'Fideos o Ravioles con crema + medallón de pollo',2);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (10, 'Lasagna tradicional con jamón y queso',3);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (11, 'Empanada de pollo',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (12, 'Empanada de carne',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (13, 'Empanada de JyQ',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (14, 'Empanada de Cebolla y Queso',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (15, 'Empanada de Verdura',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (16, 'Empanada de Choclo',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (17, 'Tarta de Calabaza',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (18, 'Tarta de Verdura',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (19, 'Tarta de JyQ',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (20, 'Ensalada Cruda (Zanahoria, tomate, rúcula, huevo duro, lechuga)',5);
+-- INSERT INTO Comida (id, nombre, semana) VALUES (21, 'Ensalada Cocida (Papas, chauchas, brócolis, huevo duro, remolacha, arroz, lentejas)',5);
+INSERT INTO Menu (id, semana, dia, nombre, comida_id) VALUES (1, 1, 1, 'Menu Lunes 1', 1);  -- Lunes
+INSERT INTO Menu (id, semana, dia, nombre, comida_id) VALUES (2, 2, 1, 'Menu Lunes 2', 2);  -- Lunes
 INSERT INTO Menu (id, dia, nombre, comida_id) VALUES (3, 2, 'Menu Martes 1', 3); -- Martes
 INSERT INTO Menu (id, dia, nombre, comida_id) VALUES (4, 2, 'Menu Martes 2', 4); -- Martes
 INSERT INTO Menu (id, dia, nombre, comida_id) VALUES (5, 3, 'Menu Miercoles 1', 5); -- Miércoles

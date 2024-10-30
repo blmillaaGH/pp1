@@ -24,9 +24,9 @@ public class MenuController {
     private ComidaService comidaService;
 
     // generar los menus correspondientes para cada dia y semana y devolverlos en la seccion menu.
-    @GetMapping("/dia/{dia}")
-    public ResponseEntity<List<Menu>> obtenerMenusPorDia(@PathVariable int dia) {
-        List<Menu> menus = menuService.obtenerMenusPorDia(dia);
+    @GetMapping("/semana/{semana}/dia/{dia}")
+    public ResponseEntity<List<Menu>> getMenusBySemanaAndDia(@PathVariable int semana, @PathVariable int dia) {
+        List<Menu> menus = menuService.getMenusBySemanaAndDia(semana, dia);
         if (menus.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

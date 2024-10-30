@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface MenuRepository extends JpaRepository<Menu,Long> {
 
     // hay que buscar los menus por dia, para mostrarlos en el menu principal y devolver la lista de menus (por index)
-    List<Menu> findByDia(int dia);
+    List<Menu> findBySemanaAndDia(int semana, int dia);
 
     Optional<Menu> findByDiaAndComidaId(int dia, Long comidaId);
 }

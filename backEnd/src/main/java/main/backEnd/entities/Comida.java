@@ -13,7 +13,7 @@ public class Comida {
     private Long id;
 
     private String nombre;
-    private String desc;
+   
 
     // una comida UNICA para muchos menus UNICOS
     @OneToMany(mappedBy = "comida")
@@ -26,17 +26,13 @@ public class Comida {
         this.id = id;
     }
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getDesc() {
-        return desc;
-    }
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+
+ 
 
     public List<Menu> getMenus() {
         return menus;

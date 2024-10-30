@@ -11,16 +11,18 @@ import java.util.List;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Menu {
+public class Menu{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int dia;
-    private String nombre;
-
+    private int semana;
+ 
     @ManyToOne
     @JoinColumn(name = "comida_id")
     private Comida comida;
+
+    
 
     @ManyToMany(mappedBy = "menusPedido")
     @JsonIgnoreProperties("menusPedido")
@@ -43,11 +45,11 @@ public class Menu {
     }
 
     public String getNombre() {
-        return nombre;
+        return comida.getNombre();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        comida.setNombre(nombre);
     }
 
     public Comida getComida() {
@@ -56,6 +58,13 @@ public class Menu {
 
     public void setComida(Comida comida) {
         this.comida = comida;
+    }
+    public int getSemana() {
+        return semana;
+    }
+
+    public void setSemana(int semana) {
+        this.semana = semana;
     }
 
     public List<Pedido> getPedidos() {
