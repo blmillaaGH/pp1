@@ -1,5 +1,6 @@
 package main.backEnd.controller;
 
+import main.backEnd.dto.MenuRequest;
 import main.backEnd.entities.Menu;
 import main.backEnd.service.ComidaService;
 import main.backEnd.service.MenuService;
@@ -10,10 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/api/menus")
-@CrossOrigin
 public class MenuController {
 
     @Autowired
@@ -31,6 +31,12 @@ public class MenuController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(menus,HttpStatus.OK);
+    }
+
+      @PostMapping("/guardar")
+    public ResponseEntity<String> guardarMenu(@RequestBody MenuRequest menuRequest) {
+        menuService.guardarMenu(menuRequest);
+        return ResponseEntity.ok("Menú guardado exitosamente");
     }
 }
 

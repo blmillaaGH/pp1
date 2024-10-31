@@ -45,6 +45,31 @@ function eliminarMenu(button) {
 }
 
 function publicarMenu() {
-    alert("Menú publicado con éxito!");
+    const rows = document.querySelectorAll('.row');
+    const menuData = Array.from(rows).map((row, index) => {
+        const dia = index + 1;
+        const comidas = Array.from(row.querySelectorAll('.menus div')).map(div => div.textContent);
+        return {
+            dia: dia,
+            semana: 1, // Asegúrate de cambiarlo según corresponda
+            comidas: comidas
+        };
+    });
+
+    fetch('http://localhost:8080/api/menus/guardar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(menuData)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Menú publicado con éxito!");
+        } else {
+            alert("Error al publicar el menú.");
+        }
+    })
+    .catch(error => console.error('Error:', error));
 
 }
