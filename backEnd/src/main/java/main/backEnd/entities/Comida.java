@@ -13,7 +13,6 @@ public class Comida {
     private Long id;
 
     private String nombre;
-   
 
     // una comida UNICA para muchos menus UNICOS
     @OneToMany(mappedBy = "comida")

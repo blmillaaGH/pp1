@@ -17,12 +17,10 @@ public class Menu{
     private Long id;
     private int dia;
     private int semana;
- 
+
     @ManyToOne
     @JoinColumn(name = "comida_id")
     private Comida comida;
-
-    
 
     @ManyToMany(mappedBy = "menusPedido")
     @JsonIgnoreProperties("menusPedido")

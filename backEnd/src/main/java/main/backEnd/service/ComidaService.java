@@ -13,13 +13,4 @@ public class ComidaService {
     @Autowired
     private ComidaRepository comidaRepository;
 
-    public Optional<Comida> findByNombre(String nombre) {
-        return comidaRepository.findByNombre(nombre);
-    }
-
-    public Comida crearComida(String nombre) {
-        Comida comida = new Comida();
-        comida.setNombre(nombre);
-        return comidaRepository.save(comida);
-    }
 }
