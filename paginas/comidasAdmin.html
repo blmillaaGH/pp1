@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración de Menús</title>
     <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/comidas.css">
 </head>
 <body>
     <header>
@@ -22,87 +22,62 @@
 
     <h2>Administración de Menús</h2>
 
-    <h2>Seleccione la semana</h2>
 
-    <div class="semana-select">
-        <select name="semana" id="semanaSelector">
-            <option value="1">Semana 1</option>
-            <option value="2">Semana 2</option>
-            <option value="3">Semana 3</option>
-            <option value="4">Semana 4</option>
-        </select>
-    </div>
 
     <section class="table-container">
         <div class="header">
-            <div>DÍA</div>
-            <div>MENÚ</div>
+            <div>COMIDAS</div>
             <div>ACCIONES</div>
         </div>
         <!-- Filas para cada día -->
         <div class="row">
-            <div>1</div>
             <div class="menus">
                 <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
+                    <input type="text" placeholder="Agregar comida">
                 </label>
             </div>
             <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
+                <button onclick="openModalComida()">Agregar comida</button>
             </div>
         </div>
         <div class="row">
-            <div>2</div>
             <div class="menus">
                 <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
+                    <input type="text" placeholder="Agregar comida">
                 </label>
             </div>
             <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
+                <button onclick="openModalComida()">Agregar comida</button>
             </div>
         </div>
         <div class="row">
-            <div>3</div>
             <div class="menus">
                 <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
+                    <input type="text" placeholder="Agregar comida">
                 </label>
             </div>
             <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
+                <button onclick="openModalComida()">Agregar comida</button>
             </div>
         </div>
         <div class="row">
-            <div>4</div>
             <div class="menus">
                 <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
+                    <input type="text" placeholder="Agregar comida">
                 </label>
             </div>
             <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
+                <button onclick="openModalComida()">Agregar comida</button>
             </div>
         </div>
         <div class="row">
-            <div>5</div>
             <div class="menus">
                 <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
+                    <input type="text" placeholder="Agregar comida">
                 </label>
             </div>
             <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
+                <button onclick="openModalComida()">Agregar comida</button>
             </div>
         </div>
     </section>
@@ -110,7 +85,7 @@
     <div id="menuModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Menu agregado correctamente<span id="modalDay"></span></h3>
+            <h3>Comida agregada correctamente<span id="modalDay"></span></h3>
         </div>
     </div>
     <!-- <div id="menuModal" class="modal">
@@ -124,8 +99,6 @@
             <button onclick="submitMenus()">Guardar Menús</button>
         </div>
     </div> -->
-
-    <button class="publicar-button" onclick="publicarMenu()">Publicar Menú</button>
 
     <footer>
         <p>© 2do DSW P-P-1 G-7 2024</p>

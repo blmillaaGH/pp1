@@ -1,14 +1,21 @@
 let currentDay = null;
 
-function openModal(day) {
-    currentDay = day;
-    document.getElementById("modalDay").textContent = day;
+function openModal() {
     document.getElementById("menuModal").style.display = "block";
+}
+function openModalComida() {
+    document.getElementById("menuModal").style.display = "block";
+}
+function openModalModificarComida() {
+    document.getElementById("menuModal").style.display = "block";
+}
+function openModalEliminarComida() {
+    document.getElementById("menuModal2").style.display = "block";
 }
 
 function closeModal() {
     document.getElementById("menuModal").style.display = "none";
-    document.getElementById("menuInputs").innerHTML = '<input type="text" placeholder="Ingrese el menú" class="menu-input">';
+    document.getElementById("menuModal2").style.display = "none";
 }
 
 function addMenuInput() {
@@ -34,14 +41,38 @@ function submitMenus() {
     closeModal();
 }
 
-function modificarMenu(button) {
+//FUNCION PARA MODIFICAR COMIDAS
+const select = document.getElementById("opciones");
+const modificarBtn = document.getElementById("btnModificar");
+const modificacionDiv = document.getElementById("modificacion");
+const nuevaOpcionInput = document.getElementById("nuevaOpcion");
+const guardarBtn = document.getElementById("guardar");
 
-}
 
-function eliminarMenu(button) {
-    const row = button.closest('.row');
-    const menuContainer = row.querySelector('.menus');
-    menuContainer.innerHTML = ""; 
+modificarBtn.addEventListener("click", () => {
+    const selectedOption = select.options[select.selectedIndex];
+    if (selectedOption) {
+        nuevaOpcionInput.value = selectedOption.text;
+        modificacionDiv.classList.remove("hidden");
+    }
+});
+
+
+guardarBtn.addEventListener("click", () => {
+    const selectedOption = select.options[select.selectedIndex];
+    if (selectedOption) {
+        selectedOption.text = nuevaOpcionInput.value; 
+    }
+    modificacionDiv.classList.add("hidden");
+});
+
+
+function eliminarMenu() {
+    const selectedIndex = select.selectedIndex;
+    if (selectedIndex !== -1) {
+        select.remove(selectedIndex); // Eliminar la opción seleccionada
+    }
+    openModalEliminarComida();
 }
 
 //
@@ -74,3 +105,5 @@ function eliminarMenu(button) {
 //    .catch(error => console.error('Error:', error));
 //
 //}
+
+

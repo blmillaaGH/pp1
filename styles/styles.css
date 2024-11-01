@@ -28,6 +28,14 @@ header {
     width: 100%; 
 }
 
+header p{
+    color: white;
+    position: fixed;
+    right: 2rem;
+    font-size: 14px;
+    top: 1rem;
+}
+
 /* Define el footer */
 footer {
     display: flex;
@@ -134,7 +142,8 @@ section.table-container {
     padding: 1rem; 
     border-radius: 0.8rem; 
     max-width: 78.2rem; 
-    margin: 4rem auto; 
+    margin: 2%;
+    margin-left: 31%;
 }
 
 .header, .row {
