@@ -6,7 +6,8 @@ import java.util.List;
 
 @Entity
 public class Comida {
-    // las comidas, almacenan solo datos cargados para la muestra, una comida está asociada a muchos menus.
+    // las comidas, almacenan solo el nombre de la comida, una comida está asociada a uno o muchos menus
+    // (un menú tiene una comida o más asociado a uno o más días y una o más semanas.).
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)

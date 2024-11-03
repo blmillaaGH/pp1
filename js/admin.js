@@ -75,6 +75,26 @@ function eliminarMenu() {
     openModalEliminarComida();
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    cargarComidas();
+});
+
+function cargarComidas() {
+    fetch("http://localhost:8080/api/comidas")
+        .then(response => response.json())
+        .then(data => {
+            const select = document.getElementById('opciones');
+            select.innerHTML = '<option value="" disabled selected>Elegir comida</option>';
+            data.forEach(comida => {
+                const option = document.createElement('option');
+                option.value = comida.id;
+                option.textContent = comida.nombre;
+                select.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error al cargar las comidas:', error));
+}
+
 //
 //function publicarMenu() {
 //    const rows = document.querySelectorAll('.row');
