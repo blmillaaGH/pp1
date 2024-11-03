@@ -47,8 +47,6 @@ const modificacionDiv = document.getElementById("modificacion");
 const nuevaOpcionInput = document.getElementById("nuevaOpcion");
 const guardarBtn = document.getElementById("guardar");
 
-// LO MISMO QUE COMIDA, SOLO AGREGA EL LISTENER SI EXISTE!
-
 if (modificarBtn) {
     modificarBtn.addEventListener("click", () => {
         const selectedOption = select.options[select.selectedIndex];
@@ -59,7 +57,7 @@ if (modificarBtn) {
     });
 }
 
-// Guardar comida en la BD (si no existe no deberia agregar el listener en la paginAa menu..)
+// para guardar en bd
 if (guardarBtn) {
     guardarBtn.addEventListener("click", () => {
         const selectedOption = select.options[select.selectedIndex];
@@ -94,7 +92,6 @@ if (guardarBtn) {
     });
 }
 
-
 // FUNCIÓN PARA ELIMINAR COMIDAS
 function eliminarComida() {
     const selectedOption = document.getElementById("comida1").options[document.getElementById("comida1").selectedIndex];
@@ -115,6 +112,40 @@ function eliminarComida() {
         });
     }
 }
+
+// FUNCIÓN PARA AGREGAR NUEVA COMIDA
+function agregarNuevaComida() {
+    const input = document.querySelector('input[placeholder="Agregar comida"]');
+    
+
+    if (nuevaComida) {
+        fetch('http://localhost:8080/api/comidas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nombre: nuevaComida })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Comida agregada:', data);
+            cargarComidas(); // Refrescar la lista de comidas
+            openModalComida(); // Mostrar modal solo si se agrega correctamente
+        })
+        .catch(error => {
+            console.error('Error al agregar la comida:', error);
+            alert("Error al agregar la comida");
+        });
+    } else {
+        alert("Por favor, ingrese un nombre para la nueva comida.");
+    }
+}
+
 
 // funciones (deberian mutar para ambas paginas)
 console.log("admin.js");
@@ -145,4 +176,3 @@ function cargarComidas() {
         })
         .catch(error => console.error('Error al cargar las comidas:', error));
 }
-

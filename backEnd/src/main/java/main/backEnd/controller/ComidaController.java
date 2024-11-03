@@ -4,6 +4,7 @@ import main.backEnd.entities.Comida;
 import main.backEnd.repository.ComidaRepository;
 import main.backEnd.service.ComidaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,10 +28,14 @@ public class ComidaController {
 
     @PostMapping
     public ResponseEntity<Comida> insertNewComida(@RequestBody Comida comida) {
-        // falta validacion para no sobreescribir comidas.
-        Comida nuevaComida = comidaService.saveComida(comida);
-        return ResponseEntity.ok(nuevaComida);
+        try {
+            Comida nuevaComida = comidaService.saveComida(comida);
+            return ResponseEntity.ok(nuevaComida);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Comida> modifyComida(@PathVariable Long id, @RequestBody Comida comida) {
