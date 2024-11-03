@@ -116,7 +116,7 @@ function eliminarComida() {
 // FUNCIÓN PARA AGREGAR NUEVA COMIDA
 function agregarNuevaComida() {
     const input = document.querySelector('input[placeholder="Agregar comida"]');
-    
+
 
     if (nuevaComida) {
         fetch('http://localhost:8080/api/comidas', {

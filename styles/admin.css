@@ -72,3 +72,18 @@
 .acciones button{
     width: 22rem;
 }
+.contenedor-publicarBoton{
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+}
+
+.publicar-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: auto; /* No ocupa todo el ancho */
+}
