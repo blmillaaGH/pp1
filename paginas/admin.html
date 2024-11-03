@@ -8,129 +8,118 @@
     <link rel="stylesheet" href="../styles/admin.css">
 </head>
 <body>
-    <header>
-        <h1>Sistema de Gestión de Pedidos</h1>
-        <a href="../index.html"><p>Cerrar sesion</p></a>
-        <nav class="nav-sup">
-            <ul>
-                <li><a href="./admin.html">Menu</a></li>
-                <li><a href="./comidasAdmin.html">Agregar comidas</a></li>
-                <li><a href="./verComidasAdmin.html">Ver comidas</a></li>
-            </ul>     
-        </nav>
-    </header>
+<header>
+    <h1>Sistema de Gestión de Pedidos</h1>
+    <a href="../index.html"><p>Cerrar sesión</p></a>
+    <nav class="nav-sup">
+        <ul>
+            <li><a href="./admin.html">Menu</a></li>
+            <li><a href="./comidasAdmin.html">Agregar comidas</a></li>
+            <li><a href="./verComidasAdmin.html">Ver comidas</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <h2>Administración de Menús</h2>
+<h2>Administración de Menús</h2>
 
-    <h2>Seleccione la semana</h2>
+<h2>Seleccione la semana</h2>
 
-    <div class="semana-select">
-        <select name="semana" id="semanaSelector">
-            <option value="1">Semana 1</option>
-            <option value="2">Semana 2</option>
-            <option value="3">Semana 3</option>
-            <option value="4">Semana 4</option>
-        </select>
+<div class="semana-select">
+    <select name="semana" id="semanaSelector">
+        <option value="1">Semana 1</option>
+        <option value="2">Semana 2</option>
+        <option value="3">Semana 3</option>
+        <option value="4">Semana 4</option>
+    </select>
+</div>
+
+<section class="table-container">
+    <div class="header">
+        <div>DÍA</div>
+        <div>COMIDAS</div>
+        <div>ACCIONES</div>
     </div>
-
-    <section class="table-container">
-        <div class="header">
-            <div>DÍA</div>
-            <div>MENÚ</div>
-            <div>ACCIONES</div>
+    <!-- Filas para cada día -->
+    <div class="row">
+        <div>1</div>
+        <div class="menus">
+            <label for="comidas1">
+                <select name="comida" id="comida1" class="comidaSelector">
+                    <option value="" disabled selected>Seleccionar comida</option>
+                </select>
+            </label>
         </div>
-        <!-- Filas para cada día -->
-        <div class="row">
-            <div>1</div>
-            <div class="menus">
-                <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
-                </label>
-            </div>
-            <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
-            </div>
-        </div>
-        <div class="row">
-            <div>2</div>
-            <div class="menus">
-                <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
-                </label>
-            </div>
-            <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
-            </div>
-        </div>
-        <div class="row">
-            <div>3</div>
-            <div class="menus">
-                <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
-                </label>
-            </div>
-            <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
-            </div>
-        </div>
-        <div class="row">
-            <div>4</div>
-            <div class="menus">
-                <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
-                </label>
-            </div>
-            <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
-            </div>
-        </div>
-        <div class="row">
-            <div>5</div>
-            <div class="menus">
-                <label for="comidas">
-                    <select name="comida" id="comida">
-                        <option value="" disabled selected>Seleccionar menu</option>
-                    </select>
-                </label>
-            </div>
-            <div class="acciones">
-                <button onclick="openModal()">Agregar Menú</button>
-            </div>
-        </div>
-    </section>
-
-    <div id="menuModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Menu agregado correctamente<span id="modalDay"></span></h3>
+        <div class="acciones">
+            <button onclick="guardarComida('1')">Agregar Comida</button>
         </div>
     </div>
-    <!-- <div id="menuModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Agregar Menús del Día <span id="modalDay"></span></h3>
-            <div id="menuInputs">
-                <input type="text" placeholder="Ingrese el menú" class="menu-input">
-            </div>
-            <button onclick="addMenuInput()">Agregar otro menú</button>
-            <button onclick="submitMenus()">Guardar Menús</button>
+    <div class="row">
+        <div>2</div>
+        <div class="menus">
+            <label for="comidas2">
+                <select name="comida" id="comida2" class="comidaSelector">
+                    <option value="" disabled selected>Seleccionar comida</option>
+                </select>
+            </label>
         </div>
-    </div> -->
+        <div class="acciones">
+            <button onclick="guardarComida('2')">Agregar Comida</button>
+        </div>
+    </div>
+    <div class="row">
+        <div>3</div>
+        <div class="menus">
+            <label for="comidas3">
+                <select name="comida" id="comida3" class="comidaSelector">
+                    <option value="" disabled selected>Seleccionar comida</option>
+                </select>
+            </label>
+        </div>
+        <div class="acciones">
+            <button onclick="guardarComida('3')">Agregar Comida</button>
+        </div>
+    </div>
+    <div class="row">
+        <div>4</div>
+        <div class="menus">
+            <label for="comidas4">
+                <select name="comida" id="comida4" class="comidaSelector">
+                    <option value="" disabled selected>Seleccionar comida</option>
+                </select>
+            </label>
+        </div>
+        <div class="acciones">
+            <button onclick="guardarComida('4')">Agregar Comida</button>
+        </div>
+    </div>
+    <div class="row">
+        <div>5</div>
+        <div class="menus">
+            <label for="comidas5">
+                <select name="comida" id="comida5" class="comidaSelector">
+                    <option value="" disabled selected>Seleccionar comida</option>
+                </select>
+            </label>
+        </div>
+        <div class="acciones">
+            <button onclick="guardarComida('5')">Agregar Comida</button>
+        </div>
+    </div>
+</section>
 
-    <button class="publicar-button" onclick="publicarMenu()">Publicar Menú</button>
+<div id="menuModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Comida agregada correctamente<span id="modalDay"></span></h3>
+    </div>
+</div>
 
-    <footer>
-        <p>© 2do DSW P-P-1 G-7 2024</p>
-    </footer>
+<button class="publicar-button" onclick="publicarComidas()">Publicar Comidas</button>
 
-    <script src="../js/admin.js"></script>
+<footer>
+    <p>© 2do DSW P-P-1 G-7 2024</p>
+</footer>
+
+<script src="../js/admin2.js"></script>
 </body>
 </html>
