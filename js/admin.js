@@ -40,57 +40,64 @@ function submitMenus() {
     closeModal();
 }
 
-//FUNCIÓN PARA MODIFICAR COMIDAS
-const select = document.getElementById("opciones");
+// FUNCIÓN PARA MODIFICAR COMIDAS
+const select = document.getElementById("comida1");
 const modificarBtn = document.getElementById("btnModificar");
 const modificacionDiv = document.getElementById("modificacion");
 const nuevaOpcionInput = document.getElementById("nuevaOpcion");
 const guardarBtn = document.getElementById("guardar");
 
-modificarBtn.addEventListener("click", () => {
-    const selectedOption = select.options[select.selectedIndex];
-    if (selectedOption) {
-        nuevaOpcionInput.value = selectedOption.text;
-        modificacionDiv.classList.remove("hidden");
-    }
-});
+// LO MISMO QUE COMIDA, SOLO AGREGA EL LISTENER SI EXISTE!
 
-// para guardar en bd
-guardarBtn.addEventListener("click", () => {
-    const selectedOption = select.options[select.selectedIndex];
-    if (selectedOption) {
-        const newNombre = nuevaOpcionInput.value;
-        if (newNombre) {
-            fetch(`http://localhost:8080/api/comidas/${selectedOption.value}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nombre: newNombre })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Error ${response.status}: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Comida modificada:', data);
-                selectedOption.text = data.nombre;
-                openModalModificarComida(); // Mostrar modal solo si se modifica correctamente
-            })
-            .catch(error => {
-                console.error('Error al modificar la comida:', error);
-                alert("Error al modificar la comida");
-            });
+if (modificarBtn) {
+    modificarBtn.addEventListener("click", () => {
+        const selectedOption = select.options[select.selectedIndex];
+        if (selectedOption) {
+            nuevaOpcionInput.value = selectedOption.text;
+            modificacionDiv.classList.remove("hidden");
         }
-        modificacionDiv.classList.add("hidden");
-    }
-});
+    });
+}
+
+// Guardar comida en la BD (si no existe no deberia agregar el listener en la paginAa menu..)
+if (guardarBtn) {
+    guardarBtn.addEventListener("click", () => {
+        const selectedOption = select.options[select.selectedIndex];
+        if (selectedOption) {
+            const newNombre = nuevaOpcionInput.value;
+            if (newNombre) {
+                fetch(`http://localhost:8080/api/comidas/${selectedOption.value}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nombre: newNombre })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error ${response.status}: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Comida modificada:', data);
+                    selectedOption.text = data.nombre;
+                    openModalModificarComida(); // Mostrar modal solo si se modifica correctamente
+                })
+                .catch(error => {
+                    console.error('Error al modificar la comida:', error);
+                    alert("Error al modificar la comida"); // alert denuevo
+                });
+            }
+            modificacionDiv.classList.add("hidden");
+        }
+    });
+}
+
 
 // FUNCIÓN PARA ELIMINAR COMIDAS
 function eliminarComida() {
-    const selectedOption = select.options[select.selectedIndex];
+    const selectedOption = document.getElementById("comida1").options[document.getElementById("comida1").selectedIndex];
     if (selectedOption) {
         fetch(`http://localhost:8080/api/comidas/${selectedOption.value}`, {
             method: 'DELETE'
@@ -99,33 +106,43 @@ function eliminarComida() {
             if (!response.ok) {
                 throw new Error(`Error ${response.status}: ${response.statusText}`);
             }
-            // Eliminar la opción del select
-            select.remove(selectedOption.index);
+            selectedOption.remove();
             openModalEliminarComida(); // Abrir modal solo si se elimina correctamente
         })
         .catch(error => {
             console.error('Error al eliminar la comida:', error);
-            alert("No se puede eliminar la comida porque está relacionada a algún menú existente");
+            alert("No se puede eliminar la comida porque está relacionada a algún menú existente"); // tira el alert
         });
     }
 }
 
+// funciones (deberian mutar para ambas paginas)
+console.log("admin.js");
 document.addEventListener("DOMContentLoaded", function() {
     cargarComidas();
 });
 
 function cargarComidas() {
     fetch("http://localhost:8080/api/comidas")
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('NETWORK ERROR ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
-            const select = document.getElementById('opciones');
-            select.innerHTML = '<option value="" disabled selected>Elegir comida</option>';
-            data.forEach(comida => {
-                const option = document.createElement('option');
-                option.value = comida.id;
-                option.textContent = comida.nombre;
-                select.appendChild(option);
+            console.log(data); // chequear qué llega en los log.
+            const selects = document.querySelectorAll('.comidaSelector');
+            selects.forEach(select => {
+                select.innerHTML = '<option value="" disabled selected>Seleccionar comida</option>';
+                data.forEach(comida => {
+                    const option = document.createElement('option');
+                    option.value = comida.id;
+                    option.textContent = comida.nombre;
+                    select.appendChild(option);
+                });
             });
         })
         .catch(error => console.error('Error al cargar las comidas:', error));
 }
+

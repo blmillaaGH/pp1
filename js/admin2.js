@@ -1,3 +1,9 @@
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     cargarComidas();
 });
@@ -6,7 +12,7 @@ function cargarComidas() {
     fetch("http://localhost:8080/api/comidas")
         .then(response => {
             if (!response.ok) {
-                throw new Error('NETWORK ERROR' + response.statusText);
+                throw new Error('NETWORK ERROR ' + response.statusText);
             }
             return response.json();
         })
