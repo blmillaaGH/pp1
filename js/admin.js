@@ -12,7 +12,6 @@ function openModalModificarComida() {
 function openModalEliminarComida() {
     document.getElementById("menuModal2").style.display = "block";
 }
-
 function closeModal() {
     document.getElementById("menuModal").style.display = "none";
     document.getElementById("menuModal2").style.display = "none";
@@ -41,13 +40,12 @@ function submitMenus() {
     closeModal();
 }
 
-//FUNCION PARA MODIFICAR COMIDAS
+//FUNCIÓN PARA MODIFICAR COMIDAS
 const select = document.getElementById("opciones");
 const modificarBtn = document.getElementById("btnModificar");
 const modificacionDiv = document.getElementById("modificacion");
 const nuevaOpcionInput = document.getElementById("nuevaOpcion");
 const guardarBtn = document.getElementById("guardar");
-
 
 modificarBtn.addEventListener("click", () => {
     const selectedOption = select.options[select.selectedIndex];
@@ -57,22 +55,59 @@ modificarBtn.addEventListener("click", () => {
     }
 });
 
-
+// para guardar en bd
 guardarBtn.addEventListener("click", () => {
     const selectedOption = select.options[select.selectedIndex];
     if (selectedOption) {
-        selectedOption.text = nuevaOpcionInput.value; 
+        const newNombre = nuevaOpcionInput.value;
+        if (newNombre) {
+            fetch(`http://localhost:8080/api/comidas/${selectedOption.value}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombre: newNombre })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Comida modificada:', data);
+                selectedOption.text = data.nombre;
+                openModalModificarComida(); // Mostrar modal solo si se modifica correctamente
+            })
+            .catch(error => {
+                console.error('Error al modificar la comida:', error);
+                alert("Error al modificar la comida");
+            });
+        }
+        modificacionDiv.classList.add("hidden");
     }
-    modificacionDiv.classList.add("hidden");
 });
 
-
-function eliminarMenu() {
-    const selectedIndex = select.selectedIndex;
-    if (selectedIndex !== -1) {
-        select.remove(selectedIndex); // Eliminar la opción seleccionada
+// FUNCIÓN PARA ELIMINAR COMIDAS
+function eliminarComida() {
+    const selectedOption = select.options[select.selectedIndex];
+    if (selectedOption) {
+        fetch(`http://localhost:8080/api/comidas/${selectedOption.value}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
+            // Eliminar la opción del select
+            select.remove(selectedOption.index);
+            openModalEliminarComida(); // Abrir modal solo si se elimina correctamente
+        })
+        .catch(error => {
+            console.error('Error al eliminar la comida:', error);
+            alert("No se puede eliminar la comida porque está relacionada a algún menú existente");
+        });
     }
-    openModalEliminarComida();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -94,36 +129,3 @@ function cargarComidas() {
         })
         .catch(error => console.error('Error al cargar las comidas:', error));
 }
-
-//
-//function publicarMenu() {
-//    const rows = document.querySelectorAll('.row');
-//    const menuData = Array.from(rows).map((row, index) => {
-//        const dia = index + 1;
-//        const comidas = Array.from(row.querySelectorAll('.menus div')).map(div => div.textContent);
-//        return {
-//            dia: dia,
-//            semana: 1, // Asegúrate de cambiarlo según corresponda
-//            comidas: comidas
-//        };
-//    });
-//
-//    fetch('http://localhost:8080/api/menus/guardar', {
-//        method: 'POST',
-//        headers: {
-//            'Content-Type': 'application/json'
-//        },
-//        body: JSON.stringify(menuData)
-//    })
-//    .then(response => {
-//        if (response.ok) {
-//            alert("Menú publicado con éxito!");
-//        } else {
-//            alert("Error al publicar el menú.");
-//        }
-//    })
-//    .catch(error => console.error('Error:', error));
-//
-//}
-
-

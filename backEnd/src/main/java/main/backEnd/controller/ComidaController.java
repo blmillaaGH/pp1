@@ -32,4 +32,28 @@ public class ComidaController {
         return ResponseEntity.ok(nuevaComida);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Comida> modifyComida(@PathVariable Long id, @RequestBody Comida comida) {
+        Comida nuevaComida = comidaService.modifyComida(id, comida);
+        // verificacion si existe la comida, y modificacion dentro del servicio.
+        if (nuevaComida != null) {
+            // si es distinto a null, entonces tiro el ok.
+            return ResponseEntity.ok(nuevaComida);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // busco la comida por id y si está devuelvo true, si no, false y no hago nada.
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteComida(@PathVariable Long id) {
+        boolean isRemoved = comidaService.deleteComida(id);
+        // si es true y se removió entonces buildeo, si no, no.
+        if (isRemoved) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

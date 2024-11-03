@@ -21,4 +21,25 @@ public class ComidaService {
     public Comida saveComida(Comida comida) {
         return comidaRepository.save(comida);
     }
+
+    public Comida modifyComida(Long id, Comida comida) {
+        // verificacion si es existente o no, si no, return null, y no pasa por controller.
+        Optional<Comida> comidaEsExistente = comidaRepository.findById(id);
+        if (comidaEsExistente.isPresent()) {
+            Comida nuevaComida = comidaEsExistente.get();
+            nuevaComida.setNombre(comida.getNombre());
+            return comidaRepository.save(nuevaComida);
+        } else{
+            return null;
+        }
+    }
+
+    public boolean deleteComida(Long id) {
+        if (comidaRepository.existsById(id)) {
+            comidaRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
