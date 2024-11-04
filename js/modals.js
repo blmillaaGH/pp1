@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 pedidos[diaIndex].menus.splice(index, 1); // Eliminar ID de menú
                             }
 
+                            const botonesAgregar = Array.from(document.querySelectorAll('.eliminar')); // Asegúrate de que el selector sea el correcto
                             const agregarBtn = botonesAgregar.find(button => button.getAttribute('data-id') === menuId);
                             agregarBtn.style.backgroundColor = '#28a745';
                             agregarBtn.style.color = 'white';
