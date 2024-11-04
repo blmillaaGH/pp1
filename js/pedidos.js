@@ -45,6 +45,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="confirmarPedido">Confirmar pedido del día</button>
             </div>
         `;
+
+       
+        const agregarBtns = contenidoModal.querySelectorAll('.agregar');
+        const eliminarBtns = contenidoModal.querySelectorAll('.eliminar');
+
+        agregarBtns.forEach((btn, i) => {
+            const eliminarBtn = eliminarBtns[i];
+            eliminarBtn.disabled = true; 
+
+            btn.addEventListener('click', () => {
+                btn.textContent = 'CONFIRMADO';
+                btn.style.backgroundColor = 'green';
+                btn.classList.add('confirmado');
+                eliminarBtn.disabled = false; 
+            });
+        });
+
+        eliminarBtns.forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                const agregarBtn = agregarBtns[i];
+                agregarBtn.textContent = 'AGREGAR';
+                agregarBtn.style.backgroundColor = '';
+                agregarBtn.classList.remove('confirmado');
+                btn.disabled = true;
+            });
+        });
     }
 
     // Función para generar filas del menú
@@ -56,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>(menú ejemplo del día disponible)</td>
                     <td>
                         <button class="agregar">AGREGAR</button>
-                        <button class="eliminar">ELIMINAR</button>
+                        <button class="eliminar" disabled>ELIMINAR</button> <!-- Botón "Eliminar" inicialmente deshabilitado -->
                     </td>
                 </tr>
             `;
